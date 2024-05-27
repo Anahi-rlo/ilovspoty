@@ -1,0 +1,22 @@
+<table class="table table-borderless table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col"></th>
+            <th scope="col">Track</th>
+            <th scope="col">Artist</th>
+            <th scope="col">Album</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let track of tracks">
+            <th scope="row">{{ track.id }}</th>
+            <td>
+                <img [src]="track.image" alt="Track Image" width="50" height="50">
+            </td>
+            <td>{{ track.name }}</td>
+            <td>{{ track.artist }}</td>
+            <td>{{ track.album }}</td>
+        </tr>
+    </tbody>
+</table>

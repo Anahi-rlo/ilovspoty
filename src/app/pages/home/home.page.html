@@ -1,0 +1,14 @@
+<app-vanta-background>
+    <div class="converter-container">
+        <h1>Conoce tus gustos, conocete con Spotify</h1>
+        <div class="sub-group mt-3">
+            <span class="mb-4">Navega por todas nuestras herramientas</span>
+        </div>
+    </div>
+    <app-basic-margin>
+        <div class="row row-cols-1 row-cols-md-4">
+            <app-card-menu *ngFor="let cardMenu of cardsMenu" [card]="cardMenu" class="col">
+            </app-card-menu>
+        </div>
+    </app-basic-margin>
+</app-vanta-background>

@@ -1,102 +1,123 @@
-
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { Track } from '../interfaces/track.interface';
+import { Playlist } from '../interfaces/playlist.interface';
+import { Artist } from '../interfaces/artist.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-
 export class SpotifyService {
-    public credentials = {
 
-        clientId: 'c412424ad8c2474c86370c9b52b4c640',
-        clientSecret: 'd2f0d0fb908647afa4a8223b433d119d',
-        accessToken: ''
-    };
-
-    public poolUR1S = {
-        authorize: 'https://accounts.spotify.com/es-ES/authorize?client_id=' +
-            this.credentials.clientId + '&response_type=token' +
-            '&redirect_uri=' + encodeURIComponent('http://localhost:4200/callback') +
-            '&expires_in-3600',
-        refreshAccessToken: 'https://accounts.spotify.com/api/token'
-
-    };
-    constructor(private _http: HttpClient) {
-        this.upDateToken()
+  public tracks: Track[] = [
+    {
+      id: 1,
+      name: "Echoes of Time",
+      artist: "Synthwave Master",
+      image: "https://picsum.photos/300/300",
+      album: "Synthwave Dreams"
+    },
+    {
+      id: 2,
+      name: "Lunar Eclipse",
+      artist: "Celestial Voices",
+      image: "https://picsum.photos/300/300",
+      album: "Space Journey"
+    },
+    {
+      id: 3,
+      name: "Ocean's Whisper",
+      artist: "Tranquil Tides",
+      image: "https://picsum.photos/300/300",
+      album: "Calm Waters"
     }
+  ];
 
-    upDateToken() {
-        this.credentials.accessToken = sessionStorage.getItem('token') || '';
+  // Información falsa para playlists
+  public playlists: Playlist[] = [
+    {
+      id: 1,
+      name: "Morning Vibes",
+      author: "DJ Sunrise",
+      image: "https://picsum.photos/300/300"
+    },
+    {
+      id: 2,
+      name: "Workout Hits",
+      author: "Fitness Guru",
+      image: "https://picsum.photos/300/300"
+    },
+    {
+      id: 3,
+      name: "Relaxation Tunes",
+      author: "Chill Master",
+      image: "https://picsum.photos/300/300"
     }
+  ]
 
-
-    getQuery(query: string) {
-
-        const URL = "https://api.spotify.com/v1/${query}";
-        const HEADER = { headers: new HttpHeaders({ 'Authorization': 'Bearer' + this.credentials.accessToken }) };
-
-        return this._http.get(URL, HEADER);
+  // Información falsa para artists
+  public artists: Artist[] = [
+    {
+      id: 1,
+      name: "Synthwave Master",
+      image: "https://picsum.photos/300/300"
+    },
+    {
+      id: 2,
+      name: "Celestial Voices",
+      image: "https://picsum.photos/300/300"
+    },
+    {
+      id: 3,
+      name: "Tranquil Tides",
+      image: "https://picsum.photos/300/300"
+    },
+    {
+      id: 1,
+      name: "Synthwave Master",
+      image: "https://picsum.photos/300/300"
+    },
+    {
+      id: 2,
+      name: "Celestial Voices",
+      image: "https://picsum.photos/300/300"
+    },
+    {
+      id: 3,
+      name: "Tranquil Tides",
+      image: "https://picsum.photos/300/300"
+    },
+    {
+      id: 1,
+      name: "Synthwave Master",
+      image: "https://picsum.photos/300/300"
+    },
+    {
+      id: 2,
+      name: "Celestial Voices",
+      image: "https://picsum.photos/300/300"
+    },
+    {
+      id: 3,
+      name: "Tranquil Tides",
+      image: "https://picsum.photos/300/300"
     }
+  ]
 
-    checkTokenSpoLogin() {
-        //falta text
-        this.checkTokenSpo() || (sessionStorage.setItem('refererURL', location.href), window.location.href = '');
+  constructor(private http: HttpClient) { }
 
-    }
+  public fetchTracks(searchTerm = ""): void {
+    const token = localStorage.getItem("auth_token") ?? "";
+    this.tracks = [];
+  }
 
-    checkTokenSpo() {
-        return !!this.credentials.accessToken;
-    }
+  public fetchPlaylists(searchTerm = ""): void {
+    const token = localStorage.getItem("auth_token") ?? "";
+    this.playlists = [];
+  }
 
-    tokenRefreshURL() {
-
-        this.checkTokenSpo() && alert('Expiro la sesión');
-        this.credentials.accessToken = '';
-        sessionStorage.removeItem('token');
-        this.checkTokenSpoLogin();
-    }
-
-
-    getNewReleases() {
-        return this.getQuery("browse/new-releases")
-            .pipe(map((data: any) => data.albums.items));
-    }
-
-    getFeaturedPlaylists() {
-        return this.getQuery(`browse/featured-playlists`)
-            .pipe(map((data: any) => data.playlists.items));
-    }
-
-    getArtistas(termino: string) {
-
-        return this.getQuery(`search?q=${termino} &type=artist&limit=15`)
-            .pipe(map((data: any) => {
-                return data.artists.items;
-            }));
-    }
-
-    getPlaylist(id: string) {
-        return this.getQuery(`playlists/${id}`)
-    }
-
-    getArtista(id: string) {
-        return this.getQuery(`artist/${id}`)
-    }
-
-    getTopTracks(id: string) {
-        return this.getQuery(`artists/${id}/top-tracks?market=US`)
-            .pipe(map((data: any) => {
-                return data["tracks"];
-            }));
-    }
-
-    getTopPlaylistTracks(id: string) {
-        return this.getQuery(`playlists/${id}/tracks&limit=15`)
-            .pipe(map((data: any) => {
-                return data["tracks"];
-            }));
-    }
-
+  public fetchArtists(searchTerm = ""): void {
+    const token = localStorage.getItem("auth_token") ?? "";
+    this.artists = [];
+  }
 }

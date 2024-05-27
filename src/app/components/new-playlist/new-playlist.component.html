@@ -1,0 +1,29 @@
+<div class="d-flex align-items-center mb-2">
+    <label class="col-form-label col-form-label-lg me-2" for="nameP">Name | </label>
+    <input class="form-control form-control-lg me-2 custom-input" type="text" [(ngModel)]="name"
+        placeholder="Nombre de la Playlist" id="nameP">
+    <button class="btn btn-success ms-auto btn-fit-content btn-lg" (click)="newPlaylist()" type="button">Crear
+        Playlist</button>
+</div>
+
+
+<table class="table table-borderless table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Track</th>
+            <th scope="col">Artist</th>
+            <th scope="col">State</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let track of tracks">
+            <th scope="row">{{ track.id }}</th>
+            <td>{{ track.name }}</td>
+            <td>{{ track.artist }}</td>
+            <td [ngClass]="track.finded ? 'finded' : 'not-finded'">
+                {{ track.finded ? 'Encontrado' : 'No encontrado' }}
+            </td>
+        </tr>
+    </tbody>
+</table>

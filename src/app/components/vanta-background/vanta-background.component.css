@@ -1,0 +1,17 @@
+#vanta-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Esto asegura que el fondo esté detrás del contenido */
+}
+
+/* #vanta-bg {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+} */

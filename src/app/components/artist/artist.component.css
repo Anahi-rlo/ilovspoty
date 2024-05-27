@@ -1,0 +1,48 @@
+.card-img-wrapper {
+    width: 100%;
+    padding-top: 100%;
+    /* Esto asegura que el contenedor tenga una proporción 1:1 (cuadrado) */
+    position: relative;
+}
+
+.card-img-top {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+@media (max-width: 767.98px) {
+    .card-img-wrapper {
+        width: 50%;
+        padding-top: 50%;
+        /* Ajusta la altura del contenedor en pantallas pequeñas */
+    }
+
+    .card-img-top {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .card-body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .card-title {
+        margin-left: 25px;
+    }
+}

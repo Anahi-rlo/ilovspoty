@@ -1,0 +1,60 @@
+.converter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 25px;
+    margin-top: 130px;
+    
+}
+
+h1{
+color: white;
+}
+
+input {
+    font-size: 1em;
+    padding: 0.5em;
+    width: 300px;
+}
+
+.sub-group {
+    width: 70%;
+    
+    /* Ancho por defecto */
+}
+
+@media (max-width: 768px) {
+    .sub-group {
+        width: 90%;
+        /* Ancho cuando la pantalla es más pequeña */
+    }
+}
+
+@media (max-width: 576px) {
+    .sub-group {
+        width: 80%;
+        /* Ancho cuando la pantalla es aún más pequeña */
+    }
+
+}
+
+
+button {
+    /* padding: 0.5em 1em;
+    font-size: 1em; */
+    border: none;
+    background-color: #1DB954;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1ed760;
+}
+
+
+p {
+    font-size: 1.2em;
+    margin: 0;
+}

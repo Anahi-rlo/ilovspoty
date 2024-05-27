@@ -1,0 +1,32 @@
+/* app-card-menu.component.css */
+.card {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+h5{
+    color: white;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+}
+
+.card i {
+    font-size: 2rem;
+    /* Ajusta el tamaño del icono según sea necesario */
+    color: #1DB954;
+    /* Cambia el color del icono según sea necesario */
+}
+
+.card-title {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}

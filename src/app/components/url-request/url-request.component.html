@@ -1,0 +1,18 @@
+<div class="converter-container">
+    <h1>Convertidor de playlist de YouTube a Spotify</h1>
+    <div class="sub-group mt-3">
+        <span class="mb-4">Convierte facilmente, solo agrega la url de la playlist "Publica" y pesiona el botón
+            "Convertir."</span>
+
+        <div class="input-group mt-5">
+            <input type="text" class="form-control" placeholder="URL Youtube playlist"
+                aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="url">
+            <button class="btn btn-success" (click)="searchPlaylist()" type="button"
+                id="button-addon2">Convertir</button>
+        </div>
+        
+        <div *ngIf="isUrlEmpty" class="invalid-feedback d-block">Por favor, ingresa una URL.</div>
+        <div *ngIf="!isValidUrl && !isUrlEmpty" class="invalid-feedback d-block">La URL no es válida. Intenta con
+            otra.</div>
+    </div>
+</div>
