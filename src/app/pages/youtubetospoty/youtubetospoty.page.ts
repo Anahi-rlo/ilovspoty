@@ -13,5 +13,4 @@ import { NewPlaylistComponent } from '../../components/new-playlist/new-playlist
 export class YoutubetospotyPage {
   title: string= "";
   
-
 }

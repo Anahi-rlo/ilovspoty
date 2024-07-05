@@ -15,13 +15,23 @@ import { BasicMarginComponent } from '../../components/basic-margin/basic-margin
 })
 export class MyPlaylistsPage {
   title : string= "My Playlists";
+  playlists: Playlist[]=[];
 
   constructor(private SpotifyService: SpotifyService) {
-    // this.SpotifyService.fetchPlaylists();
   }
 
-  get playlists(): Playlist[]{
-    return this.SpotifyService.playlists;
+
+  ngOnInit(): void {
+    this.SpotifyService.getUserPlaylists().subscribe({
+      next: (data) => {
+        this.playlists = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener los mejores artistas:', err);
+      }
+    });
+
+    // this.SpotifyService.updatePlaylists();
   }
 
 }

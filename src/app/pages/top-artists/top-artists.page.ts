@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ArtistsListComponent } from '../../components/artists-list/artists-list.component';
 import { ArtistComponent } from '../../components/artist/artist.component';
 import { SpotifyService } from '../../services/spotify.service';
@@ -12,15 +12,23 @@ import { BasicMarginComponent } from '../../components/basic-margin/basic-margin
   templateUrl: './top-artists.page.html',
   styleUrl: './top-artists.page.css'
 })
-export class TopArtistsPage {
+export class TopArtistsPage implements OnInit {
 
-  public title: string ="My Top Artists";
-
+  public title: string = "My Top Artists";
+  artists: Artist[] = [];
   constructor(private SpotifyService: SpotifyService) {
-    // this.SpotifyService.fetchArtists();
   }
 
-  get artists(): Artist[]{
-    return this.SpotifyService.artists;
+  ngOnInit(): void {
+    this.SpotifyService.getTopArtists().subscribe({
+      next: (data) => {
+        // console.log('Top artists:', data);
+        this.artists = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener los mejores artistas:', err);
+      }
+    });
   }
+
 }

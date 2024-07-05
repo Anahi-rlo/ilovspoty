@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { VantaBackgroundComponent } from '../../components/vanta-background/vanta-background.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-welcome',
@@ -9,7 +10,9 @@ import { VantaBackgroundComponent } from '../../components/vanta-background/vant
   styleUrl: './welcome.page.css'
 })
 export class WelcomePage {
-  exploreSpotify() {
-    console.log('Explorar Spotify');
+  constructor(private authService: AuthService) { }
+
+  authenticate() {
+    this.authService.login();
   }
 }

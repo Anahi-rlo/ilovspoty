@@ -13,14 +13,21 @@ import { BasicMarginComponent } from '../../components/basic-margin/basic-margin
   styleUrl: './top-tracks.page.css'
 })
 export class TopTracksPage {
-  public title: string ="My Top Tracks";
+  public title: string = "My Top Tracks";
+  tracks: Track[] = []; 
 
   constructor(private SpotifyService: SpotifyService) {
-    // this.SpotifyService.fetchTracks();
   }
 
-  get tracks(): Track[] {
-    console.log(this.SpotifyService.tracks);
-    return this.SpotifyService.tracks;
+  ngOnInit(): void {
+    this.SpotifyService.getTopTracks().subscribe({
+      next: (data) => {
+        // console.log('Top artists:', data);
+        this.tracks = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener los mejores tracks:', err);
+      }
+    });
   }
 }
